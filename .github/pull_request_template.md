@@ -1,5 +1,18 @@
 # 1주차 미션 제출 (김경민)
 
+## ☝ [필수] 기능 구현
+
+* [x] 제공된 Boilerplate 코드를 개발 서버의 첫 페이지에서 로고와 “Welcome to Your Vue.js App”이라는 문구 밑에 문자열 입력란(이하 input)과 버튼이 있습니다.
+* [x] input은 첫 로딩시 빈 문자열을 가지고 있으며, input에서 입력한 값은 실시간으로 반영되어 바로 밑에 표시가 되어야 합니다.
+* [x] 버튼을 누르면 input에 입력된 문자열과 바로 밑에 표시되는 문자열이 왼쪽으로 1칸씩 회전합니다
+예. Projectlion 라는 입력값이 있을 때 버튼 1회 클릭 → rojectlionP 로 변경
+
+
+## ✌ [추가] 구현 사항
+
+* [x] 또 다른 버튼을 만들어, 이 버튼을 누르면 input에 입력된 문자열과 이 버튼을 누른 횟수를 보여주는 알림창을 띄워보세요.
+
+
 ## 📌 접근 방법
 
 미션 코드를 구현하기 위해서 어떤 생각들을 했는지 정리해보세요.
@@ -23,8 +36,3 @@
     * 이유) ++ 혹은 -- 연산자 사용시, 세미콜론 누락시. [자동줄바꿈(ASI, Automatic Semicolon Insertion)](https://velog.io/@exploit017/JS-%EC%84%B8%EB%AF%B8%EC%BD%9C%EB%A1%A0-%EC%9E%90%EB%8F%99-%EC%82%BD%EC%9E%85ASI)되어 비즈니스 로직의 의도와 달리 연산될 수 있다. 
     * 리팩토링 방안) += 1 
  (참고_[ESLint 공식 Doc](https://eslint.org/docs/rules/no-plusplus#rule-details))
-
-## 📌 제출 후 확인
-
-* [x] 본인의 구현 결과를 `dev` 브랜치에 구현하고, `dev` 브랜치에서 `submission` 브랜치로 PR을 보내주세요.
-* [x] Pull Request 생성 후 Reivewer에 @externship-master 와 @lkaybob 을 추가해주세요.
