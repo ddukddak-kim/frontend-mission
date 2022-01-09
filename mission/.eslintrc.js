@@ -14,8 +14,10 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
-    'quotes': [2, "single", { "avoidEscape": false }],
-    'linebreak-style': 0
+    'quotes': [2, "single", { "avoidEscape": true }],
+    'linebreak-style': 0,
+    "indent": [2, "tab"],
+    "no-tabs": ["error", { "allowIndentationTabs": true }]
   },
   overrides: [
     {
