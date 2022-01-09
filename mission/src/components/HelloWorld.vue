@@ -12,7 +12,12 @@
       <h2> {{ inputText }} </h2>
     </div>
 
-    <Notice v-if='notice.isVisible' v-on:close='notice.isVisible=false'/>
+    <Notice
+      v-if='notice.isVisible'
+      @close='notice.isVisible=false'
+      :comment='inputText'
+      :count='notice.count'
+    />
   </div>
 </template>
 
@@ -32,6 +37,7 @@ export default {
 			inputText: '',
 			notice: {
 				isVisible: false,
+				count: 0,
 			},
 		};
 	},
@@ -41,6 +47,7 @@ export default {
 		},
 		openNotice() {
 			this.notice.isVisible = true;
+			this.notice.count += 1;
 		},
 	},
 };
