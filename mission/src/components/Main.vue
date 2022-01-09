@@ -4,7 +4,7 @@
 
     <div>
       <input type='text' v-model='inputText'/>
-      <button v-on:click='confirm'>제출</button>
+      <button v-on:click='submit'>제출</button>
       <button v-on:click='openNotice'>알림</button>
     </div>
 
@@ -42,7 +42,7 @@ export default {
 		};
 	},
 	methods: {
-		confirm() {
+		submit() {
 			this.inputText = this.inputText.substr(1) + this.inputText.substr(0, 1);
 		},
 		openNotice() {
