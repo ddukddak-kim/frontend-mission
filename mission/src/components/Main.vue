@@ -25,7 +25,7 @@
 import Notice from './modals/Notice.vue';
 
 export default {
-	name: 'HelloWorld',
+	name: 'Main',
 	components: {
 		Notice,
 	},
