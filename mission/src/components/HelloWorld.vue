@@ -5,34 +5,44 @@
     <div>
       <input type='text' v-model='inputText'/>
       <button v-on:click='confirm'>제출</button>
-      <button v-on:click='alarm'>알림</button>
+      <button v-on:click='openNotice'>알림</button>
     </div>
 
     <div>
       <h2> {{ inputText }} </h2>
     </div>
 
+    <Notice v-if='notice.isVisible' v-on:close='notice.isVisible=false'/>
   </div>
 </template>
 
 <script>
+import Notice from './modals/Notice.vue';
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      inputText: '',
-    };
-  },
-  methods: {
-    confirm() {
-      this.inputText = this.inputText.substr(1) + this.inputText.substr(0, 1);
-    },
-    alarm() {
-    },
-  },
+	name: 'HelloWorld',
+	components: {
+		Notice,
+	},
+	props: {
+		msg: String,
+	},
+	data() {
+		return {
+			inputText: '',
+			notice: {
+				isVisible: false,
+			},
+		};
+	},
+	methods: {
+		confirm() {
+			this.inputText = this.inputText.substr(1) + this.inputText.substr(0, 1);
+		},
+		openNotice() {
+			this.notice.isVisible = true;
+		},
+	},
 };
 </script>
 
