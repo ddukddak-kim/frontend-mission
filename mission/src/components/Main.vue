@@ -4,8 +4,8 @@
 
     <div>
       <input type='text' v-model='inputText'/>
-      <button class='submit' v-on:click='submit'>제출</button>
-      <button class='notice' v-on:click='openNotice'>알림</button>
+      <button class='submit' @click='submit'>제출</button>
+      <button class='notice' @click='openNotice'>알림</button>
     </div>
 
     <div>
