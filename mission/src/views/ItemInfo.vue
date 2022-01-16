@@ -3,7 +3,7 @@
     <Title v-bind:price="price" />
     <Detail />
     <Review />
-    <Purchase class="purchase" v-bind:price="price.discountPrice" />
+    <Purchase class="purchase" v-bind:price="isDiscount ? price.discountPrice : price.originPrice" />
   </div>
 </template>
 
@@ -50,11 +50,5 @@ export default {
   min-height: 50px;
   background: #fff;
   border-top: 1px solid #ddd;
-  /* position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  min-height: 50px;
-  background: red; */
 }
 </style>
