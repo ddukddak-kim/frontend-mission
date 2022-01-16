@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
-import Detail from '@/components/Detail.vue';
+import Review from '@/components/Review.vue';
 
 describe('ItemInfoPage', () => {
-  const wrapper = shallowMount(Detail);
+  const wrapper = shallowMount(Review);
 
   it('renders review page', async () => {
     expect(wrapper.find('.content').exists()).toBe(true);
