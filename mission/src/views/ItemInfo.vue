@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       price: {
+        isDiscount: true,
         discountPercent: 34,
         discountPrice: '198,000',
         originPrice: '200,000',

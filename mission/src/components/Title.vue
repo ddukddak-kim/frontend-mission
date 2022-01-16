@@ -20,12 +20,15 @@
         <a>{{ product.name }}</a>
       </div>
 
-      <div class="price">
+      <div class="price" v-if="price.isDiscount">
         <div class="discount-percent">{{ price.discountPercent }}%</div>
-        <div class="discount-price">{{ price.discountPrice }} 원</div>
+        <div class="pay-price">{{ price.discountPrice }} 원</div>
         <div class="origin-price">
           <del>{{ price.originPrice }} 원</del>
         </div>
+      </div>
+      <div class="price" v-else>
+        <div class="pay-price">{{ price.originPrice }} 원</div>
       </div>
     </div>
   </div>
