@@ -1,9 +1,9 @@
 <template>
   <div id="item-info-page">
-    <Title />
+    <Title v-bind:price="price" />
     <Detail />
     <Review />
-    <Purchase class="purchase" price="299,000" />
+    <Purchase class="purchase" v-bind:price="price.discountPrice" />
   </div>
 </template>
 
@@ -22,7 +22,14 @@ export default {
     Purchase,
   },
   data() {
-    return {};
+    return {
+      price: {
+        discountPercent: 34,
+        discountPrice: '198,000',
+        originPrice: '200,000',
+      },
+      price1: '299,000',
+    };
   },
   methods: {},
   computed: {},

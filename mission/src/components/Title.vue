@@ -34,6 +34,9 @@
 <script>
 export default {
   name: 'Title',
+  props: {
+    price: Object,
+  },
   data() {
     return {
       store: {
@@ -54,11 +57,6 @@ export default {
         image: require('../assets/img/title/title_01.jpg'),
         name: '핏이 좋은 수트',
       },
-      price: {
-        discountPercent: 34,
-        discountPrice: '198000',
-        originPrice: '200000',
-      },
     };
   },
   methods: {},
@@ -67,8 +65,6 @@ export default {
 </script>
 
 <style>
-.title-image {
-}
 .title-image img {
   width: 100%;
 }
@@ -111,7 +107,7 @@ export default {
 }
 
 .product {
-  margin: 10px;
+  margin: 10px 15px;
 }
 .product .name {
   display: flex;
