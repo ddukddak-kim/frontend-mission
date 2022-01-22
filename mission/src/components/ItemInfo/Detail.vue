@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="product-info info">상품정보</div>
-    <div class="sub-title info">{{subTitle}}</div>
+    <div class="sub-title info">{{ subTitle }}</div>
     <div v-for="(item, index) of details" :key="index">
       <img class="detail-image" :src="item.image" alt= />
       <div class="detail-info info" v-html="item.description"></div>
@@ -17,11 +17,13 @@ export default {
       subTitle: '체형에 관계없이 누구에게나 맞는 수트!',
       details: [
         {
-          image: require('../assets/img/detail/detail_01.jpg'),
+          /* eslint-disable global-require */
+          image: require('@/assets/img/detail/detail_01.jpg'),
           description: '연말 송년회에 아주 어울릴 수트 판매합니다!',
         },
         {
-          image: require('../assets/img/detail/detail_02.jpg'),
+          /* eslint-disable global-require */
+          image: require('@/assets/img/detail/detail_02.jpg'),
           description: '부드러운 터치감과<br>고급스러운 컬러감을 제공합니다.',
         },
       ],

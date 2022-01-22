@@ -5,11 +5,11 @@
     </div>
 
     <div class="store">
-      <div class="image" :style="{'background-image': `url('${store.image}')`}"></div>
+      <div class="image" :style="{ 'background-image': `url('${store.image}')` }"></div>
       <div>
         <div class="name">{{ store.name }}</div>
         <div class="hash">
-          <a v-for="(item,index) of store.hash" :key="index"># {{item.name}}</a>
+          <a v-for="(item, index) of store.hash" :key="index"># {{ item.name }}</a>
         </div>
       </div>
       <div>즐겨찾기</div>
@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       store: {
-        image: require('../assets/img/title/store_01.jpg'),
+        /* eslint-disable global-require */
+        image: require('@/assets/img/title/store_01.jpg'),
         name: '대한양복',
         hash: [
           {
@@ -57,7 +58,8 @@ export default {
         ],
       },
       product: {
-        image: require('../assets/img/title/title_01.jpg'),
+        /* eslint-disable global-require */
+        image: require('@/assets/img/title/title_01.jpg'),
         name: '핏이 좋은 수트',
       },
     };
