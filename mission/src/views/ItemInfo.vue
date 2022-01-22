@@ -5,7 +5,7 @@
     <Review />
     <Purchase
       class="purchase"
-      v-bind:price="isDiscount ? price.discountPrice : price.originPrice"
+      v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice"
     />
   </div>
 </template>
@@ -32,7 +32,6 @@ export default {
         discountPrice: '198,000',
         originPrice: '200,000',
       },
-      price1: '299,000',
     };
   },
   methods: {},
