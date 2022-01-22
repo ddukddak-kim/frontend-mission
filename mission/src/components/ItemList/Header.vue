@@ -1,5 +1,5 @@
 <template>
-  <div class="item-list-header">{{ storeName }}</div>
+  <div class="item-list-header" data-test="store-name">{{ storeName }}</div>
 </template>
 
 <script>
