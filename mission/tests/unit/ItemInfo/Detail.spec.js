@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Detail from '@/components/Detail.vue';
+import Detail from '@/components/ItemInfo/Detail.vue';
 
 describe('ItemInfoPage', () => {
   const wrapper = shallowMount(Detail);

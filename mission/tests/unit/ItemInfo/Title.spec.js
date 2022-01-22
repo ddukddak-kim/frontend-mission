@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Title from '@/components/Title.vue';
+import Title from '@/components/ItemInfo/Title.vue';
 
 describe('ItemInfoPage', () => {
   const wrapper = shallowMount(Title);
