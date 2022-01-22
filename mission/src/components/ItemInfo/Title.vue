@@ -12,7 +12,9 @@
           <a v-for="(item, index) of store.hash" :key="index"># {{ item.name }}</a>
         </div>
       </div>
-      <div>즐겨찾기</div>
+      <div class="favored" @click="clickAct">
+        <font-awesome-icon :icon="store.isFavored ? ['fas', 'star'] : ['far', 'star']" />
+      </div>
     </div>
 
     <div class="product">
@@ -46,6 +48,7 @@ export default {
         /* eslint-disable global-require */
         image: require('@/assets/img/title/store_01.jpg'),
         name: '대한양복',
+        isFavored: false,
         hash: [
           {
             name: 'tag1',
@@ -64,7 +67,11 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    clickAct() {
+      this.store.isFavored = !this.store.isFavored;
+    },
+  },
   computed: {},
 };
 </script>
@@ -96,6 +103,9 @@ export default {
 }
 .store div:last-child {
   margin-right: 0px;
+}
+.store .favored > svg {
+  font-size: 1.8em;
 }
 .store .image {
   border-radius: 50%;
