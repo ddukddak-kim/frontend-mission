@@ -3,10 +3,7 @@
     <Title v-bind:price="price" />
     <Detail />
     <Review />
-    <Purchase
-      class="purchase"
-      v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice"
-    />
+    <Purchase v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice" />
   </div>
 </template>
 
@@ -42,15 +39,5 @@ export default {
 <style scoped>
 #item-info-page {
   margin: -8px 0 50px 0;
-}
-
-.purchase {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  min-height: 50px;
-  background: #fff;
-  border-top: 1px solid #ddd;
 }
 </style>
