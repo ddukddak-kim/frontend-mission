@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import Title from '@/components/Title.vue';
-import Detail from '@/components/Detail.vue';
-import Review from '@/components/Review.vue';
-import Purchase from '@/components/Purchase.vue';
+import Title from '@/components/ItemInfo/Title.vue';
+import Detail from '@/components/ItemInfo/Detail.vue';
+import Review from '@/components/ItemInfo/Review.vue';
+import Purchase from '@/components/ItemInfo/Purchase.vue';
 
 export default {
   name: 'ItemInfoPage',
