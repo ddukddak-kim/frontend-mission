@@ -13,8 +13,8 @@
       <div class="product-name">
         <a>{{ product.name }}</a>
       </div>
-      <div>
-        <a>{{ product.description }}</a>
+      <div class="product-description" data-test="product-description">
+        <a>{{ reducedDescription }}</a>
       </div>
     </div>
   </div>
@@ -42,6 +42,15 @@ export default {
       const percent = (discountedPrice / this.product.price) * 100;
 
       return Math.floor(percent);
+    },
+    reducedDescription() {
+      const LIMIT_COUNT = 10;
+      const isOverLength = this.product.description.length > LIMIT_COUNT;
+      const result = isOverLength
+        ? `${this.product.description.substring(0, LIMIT_COUNT)}...`
+        : this.product.description;
+
+      return result;
     },
   },
 };
@@ -85,5 +94,8 @@ export default {
   font-size: 1.2em;
   font-weight: bold;
   color: #7a7878;
+}
+.item .product-description {
+  color: #919191;
 }
 </style>

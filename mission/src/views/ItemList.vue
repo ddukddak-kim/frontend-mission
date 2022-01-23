@@ -28,7 +28,7 @@ export default {
           name: '극세사 잠옷',
           price: '15000',
           discountPrice: '10000',
-          description: '꿀잠가능합니다.',
+          description: '꿀잠 가능합니다.',
           /* eslint-disable global-require */
           img: require('@/assets/img/list/item_01.jpg'),
         },
@@ -37,7 +37,7 @@ export default {
           name: '방한 모자',
           price: '20000',
           discountPrice: '18000',
-          description: '따뜻한 모자예요.',
+          description: '따뜻한 모자예요. 털이 아주 부드럽습니다.',
           /* eslint-disable global-require */
           img: require('@/assets/img/list/item_02.jpg'),
         },
@@ -46,7 +46,7 @@ export default {
           name: '스마트 장갑',
           price: '21000',
           discountPrice: '',
-          description: '터치장갑입니다.',
+          description: '터치 가능한 장갑입니다.',
           /* eslint-disable global-require */
           img: require('@/assets/img/list/item_03.jpg'),
         },
@@ -64,7 +64,7 @@ export default {
           name: 'EVA 폼롤러',
           price: '50000',
           discountPrice: '47000',
-          description: '스트레칭하기 좋아요.',
+          description: '스트레칭하기 좋아요. 거북목 교정용으로 좋습니다.',
           /* eslint-disable global-require */
           img: require('@/assets/img/list/item_05.jpg'),
         },
