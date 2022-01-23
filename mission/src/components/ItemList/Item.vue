@@ -35,7 +35,9 @@ export default {
       return this.product.discountPrice.trim().length > 0;
     },
     purchasePrice() {
-      return this.isDiscount ? this.product.discountPrice : this.product.price;
+      let price = this.isDiscount ? this.product.discountPrice : this.product.price;
+      price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return price;
     },
     discountPercent() {
       const discountedPrice = this.product.price - this.product.discountPrice;
