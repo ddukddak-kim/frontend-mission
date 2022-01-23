@@ -30,8 +30,8 @@ export default {
   left: 0px;
   border-top: 1px solid #ddd;
   background: #fff;
+  box-shadow: 0 4px 4px 4px #ddd;
 }
 .navigation .select {
-  /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
 }
 </style>
