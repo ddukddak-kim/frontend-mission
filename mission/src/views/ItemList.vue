@@ -25,48 +25,48 @@ export default {
       product: [
         {
           id: '1',
-          name: '잠옷',
-          price: '',
-          discountPrice: '',
+          name: '극세사 잠옷',
+          price: '15000',
+          discountPrice: '10000',
           description: '꿀잠가능합니다.',
           /* eslint-disable global-require */
-          img: require('@/assets/img/title/store_01.jpg'),
+          img: require('@/assets/img/list/item_01.jpg'),
         },
         {
           id: '2',
-          name: '모자',
-          price: '',
-          discountPrice: '',
+          name: '방한 모자',
+          price: '20000',
+          discountPrice: '18000',
           description: '따뜻한 모자예요.',
           /* eslint-disable global-require */
-          img: require('@/assets/img/title/store_01.jpg'),
+          img: require('@/assets/img/list/item_02.jpg'),
         },
         {
           id: '3',
-          name: '장갑',
-          price: '',
+          name: '스마트 장갑',
+          price: '21000',
           discountPrice: '',
           description: '터치장갑입니다.',
           /* eslint-disable global-require */
-          img: require('@/assets/img/title/store_01.jpg'),
+          img: require('@/assets/img/list/item_03.jpg'),
         },
         {
           id: '4',
-          name: '넥타이',
-          price: '',
+          name: '행복 넥타이',
+          price: '30000',
           discountPrice: '',
-          description: '무지개색입니다.',
+          description: '무지개 색입니다.',
           /* eslint-disable global-require */
-          img: require('@/assets/img/title/store_01.jpg'),
+          img: require('@/assets/img/list/item_04.jpg'),
         },
         {
           id: '5',
-          name: '폼롤러',
-          price: '',
-          discountPrice: '',
+          name: 'EVA 폼롤러',
+          price: '50000',
+          discountPrice: '47000',
           description: '스트레칭하기 좋아요.',
           /* eslint-disable global-require */
-          img: require('@/assets/img/title/store_01.jpg'),
+          img: require('@/assets/img/list/item_05.jpg'),
         },
       ],
     };
