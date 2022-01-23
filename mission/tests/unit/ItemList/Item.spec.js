@@ -66,4 +66,27 @@ describe('ItemListItem', () => {
     expect(wrapper.find('[data-test="purchase-price"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="purchase-price"]').text()).toBe('20,000 원');
   });
+
+  it('test description reduced', () => {
+    const GIVEN_DESCRIPTION = 'abcdefghijklmn';
+    const EXPECTED_DESCRIPTION = 'abcdefghij...';
+
+    const wrapper = mount(ItemInfoPage, {
+      props: {
+        product: {
+          id: '3',
+          name: 'test2',
+          price: '20000',
+          discountPrice: '',
+          description: GIVEN_DESCRIPTION,
+          /* eslint-disable global-require */
+          img: require('@/assets/img/title/store_01.jpg'),
+        },
+      },
+    });
+
+    // check no discount template
+    expect(wrapper.find('[data-test="product-description"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="product-description"]').text()).toBe(EXPECTED_DESCRIPTION);
+  });
 });
