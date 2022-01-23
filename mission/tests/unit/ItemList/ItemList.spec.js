@@ -14,17 +14,7 @@ describe('ItemListPage', () => {
     expect(wrapper.find('[data-test="store-name"]').exists()).toBe(true);
   });
 
-  it('redners navigation items', () => {
-    const wrapper = mount(ItemListPage);
-
-    // isExist Navigation
-    expect(wrapper.find('[data-test="navigation"]').exists()).toBe(true);
-
-    // has 4 Navigation-Items
-    // expect(wrapper.find('[data-test="navigation-item"]').length).toBe(4);
-  });
-
-  it('redners product-list items', () => {
+  it('redners product-list items : case length odd', () => {
     const wrapper = mount(ItemListPage, {
       data() {
         return {
@@ -43,10 +33,48 @@ describe('ItemListPage', () => {
       },
     });
 
-    // if productData Length is even -> check empty-item added
+    // if productData Length is odd -> check empty-item added
     expect(wrapper.find('[data-test="empty-item"]').exists()).toBe(true);
 
     // if productData exist -> check item added
     expect(wrapper.find('.item-list-item').exists()).toBe(true);
+  });
+
+  it('redners product-list items : case length even', () => {
+    const wrapper = mount(ItemListPage, {
+      data() {
+        return {
+          product: [
+            {
+              id: '1',
+              name: 'testData',
+              price: '10',
+              discountPrice: '',
+              description: 'test data',
+            },
+            {
+              id: '2',
+              name: 'testData2',
+              price: '20',
+              discountPrice: '',
+              description: 'test data',
+            },
+          ],
+        };
+      },
+    });
+
+    // if productData Length is even -> check empty-item not added
+    expect(wrapper.find('[data-test="empty-item"]').exists()).toBe(false);
+  });
+
+  it('redners navigation items', () => {
+    const wrapper = mount(ItemListPage);
+
+    // isExist Navigation
+    expect(wrapper.find('[data-test="navigation"]').exists()).toBe(true);
+
+    // has 4 Navigation-Items
+    // expect(wrapper.find('[data-test="navigation-item"]').length).toBe(4);
   });
 });
