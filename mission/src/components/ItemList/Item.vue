@@ -7,8 +7,8 @@
         :style="{ 'background-image': `url('${!product.img ? '' : product.img}')` }"
       ></div>
       <div class="price-info">
-        <a class="percent" v-if="isDiscount">{{ discountPercent }}%</a>
-        <a class="purchase-price">{{ purchasePrice }} 원</a>
+        <a class="percent" v-if="isDiscount" data-test="discount-percent">{{ discountPercent }}%</a>
+        <a class="purchase-price" data-test="purchase-price">{{ purchasePrice }} 원</a>
       </div>
       <div class="product-name">
         <a>{{ product.name }}</a>
@@ -27,9 +27,6 @@ export default {
     product: Object,
     isEmpty: Boolean,
   },
-  data() {
-    return {};
-  },
   computed: {
     isDiscount() {
       return this.product.discountPrice.trim().length > 0;
@@ -37,18 +34,15 @@ export default {
     purchasePrice() {
       let price = this.isDiscount ? this.product.discountPrice : this.product.price;
       price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
       return price;
     },
     discountPercent() {
       const discountedPrice = this.product.price - this.product.discountPrice;
       const percent = (discountedPrice / this.product.price) * 100;
+
       return Math.floor(percent);
     },
-    // todo
-    // requireImage() {
-    //   /* eslint-disable global-require */
-    //   return require(this.product.img);
-    // },
   },
 };
 </script>
