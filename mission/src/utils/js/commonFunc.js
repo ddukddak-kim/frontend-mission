@@ -5,8 +5,12 @@ const numberWithComma = (number) => {
   return res;
 };
 
-const temp = () => {
-  return '';
+const a = (number) => {
+  // temp
+  if (!number) return '';
+  const res = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  return res;
 };
 
-export { numberWithComma, temp };
+export { numberWithComma, a };
