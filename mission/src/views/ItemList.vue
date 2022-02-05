@@ -2,7 +2,7 @@
   <div id="item-list-page">
     <Header v-bind:storeName="store.name" data-test="store-name" />
     <div class="item-list">
-      <Item v-for="(item, index) of product" :key="index" :product="item" />
+      <Item v-for="(item, index) of products" :key="index" :product="item" />
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />
     </div>
     <Navigation />
@@ -13,8 +13,6 @@
 import Header from '@/components/ItemList/Header.vue';
 import Navigation from '@/components/ItemList/Navigation.vue';
 import Item from '@/components/ItemList/Item.vue';
-
-import { getList } from '@/utils/api/index';
 
 export default {
   name: 'ItemListPage',
@@ -38,20 +36,15 @@ export default {
     };
   },
   computed: {
+    products() {
+      return this.$store.state.products;
+    },
     isEven() {
-      return this.product.length % 2 === 1;
+      return this.products.length % 2 === 1;
     },
   },
   created() {
-    getList({ type: 'item' })
-      .then(({ data }) => {
-        const { items } = data;
-
-        this.product = items;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.$store.commit({ type: 'movePage', pageType: 'item' });
   },
 };
 </script>
