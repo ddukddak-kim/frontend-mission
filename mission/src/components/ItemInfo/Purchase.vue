@@ -16,6 +16,13 @@ export default {
 <style>
 .purchase {
   display: flex;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 50px;
+  background: #fff;
+  border-top: 1px solid #ddd;
 }
 .button {
   width: 40%;

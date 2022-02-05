@@ -3,17 +3,15 @@
     <div class="product-info info">리뷰</div>
     <div class="review-card" v-for="(item, index) of reviews" :key="index">
       <div>
-        {{ item.user.substring(0, 3) }}{{ "*".repeat(item.user.length-3) }}
-        <a
-          class="regist-date"
-        >{{ item.registDate }}</a>
+        {{ maskingId(item.user) }}
+        <a class="regist-date">{{ item.registDate }}</a>
       </div>
       <div class="contents">
         <div class="review-info">
           <p class="title">{{ item.title }}</p>
           {{ item.comment }}
         </div>
-        <div class="image" :style="{'background-image': `url('${item.image}')`}"></div>
+        <div class="image" :style="{ 'background-image': `url('${item.image}')` }"></div>
       </div>
     </div>
   </div>
@@ -29,25 +27,30 @@ export default {
           user: 'user01',
           title: '만족해요',
           comment: '핏이 아주 잘 맞습니다. 대만족-!',
-          image: require('../assets/img/detail/detail_01.jpg'),
+          /* eslint-disable global-require */
+          image: require('@/assets/img/detail/detail_01.jpg'),
           registDate: '2022.01.01',
         },
         {
           user: 'likeon022',
           title: '22만족해요',
           comment: '22핏이 아주 잘 맞습니다. 대만족-!',
-          image: require('../assets/img/detail/detail_01.jpg'),
+          /* eslint-disable global-require */
+          image: require('@/assets/img/detail/detail_01.jpg'),
           registDate: '2022.01.01',
         },
       ],
     };
   },
   computed: {
-    // replaceAt(user, character) {
-    //   const index = 3;
-    //   if (!user || user.length === 0) return '';
-    //   return `${user.substr(0, index)}${character}${user.substr(index + character.length)}`;
-    // },
+    maskingId() {
+      return function maskingId(user) {
+        if (!user) return '';
+
+        const res = user.substring(0, 3) + '*'.repeat(user.length - 3);
+        return res;
+      };
+    },
   },
   watch: {},
 };

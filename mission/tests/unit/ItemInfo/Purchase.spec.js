@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Purchase from '@/components/Purchase.vue';
+import Purchase from '@/components/ItemInfo/Purchase.vue';
 
 describe('ItemInfoPage', () => {
   const wrapper = shallowMount(Purchase);

@@ -5,14 +5,16 @@
     </div>
 
     <div class="store">
-      <div class="image" :style="{'background-image': `url('${store.image}')`}"></div>
+      <div class="image" :style="{ 'background-image': `url('${store.image}')` }"></div>
       <div>
         <div class="name">{{ store.name }}</div>
         <div class="hash">
-          <a v-for="(item,index) of store.hash" :key="index"># {{item.name}}</a>
+          <a v-for="(item, index) of store.hash" :key="index"># {{ item.name }}</a>
         </div>
       </div>
-      <div>즐겨찾기</div>
+      <div class="favored" @click="clickAct">
+        <font-awesome-icon :icon="store.isFavored ? ['fas', 'star'] : ['far', 'star']" />
+      </div>
     </div>
 
     <div class="product">
@@ -43,8 +45,10 @@ export default {
   data() {
     return {
       store: {
-        image: require('../assets/img/title/store_01.jpg'),
+        /* eslint-disable global-require */
+        image: require('@/assets/img/title/store_01.jpg'),
         name: '대한양복',
+        isFavored: false,
         hash: [
           {
             name: 'tag1',
@@ -57,12 +61,17 @@ export default {
         ],
       },
       product: {
-        image: require('../assets/img/title/title_01.jpg'),
+        /* eslint-disable global-require */
+        image: require('@/assets/img/title/title_01.jpg'),
         name: '핏이 좋은 수트',
       },
     };
   },
-  methods: {},
+  methods: {
+    clickAct() {
+      this.store.isFavored = !this.store.isFavored;
+    },
+  },
   computed: {},
 };
 </script>
@@ -94,6 +103,9 @@ export default {
 }
 .store div:last-child {
   margin-right: 0px;
+}
+.store .favored > svg {
+  font-size: 1.8em;
 }
 .store .image {
   border-radius: 50%;
