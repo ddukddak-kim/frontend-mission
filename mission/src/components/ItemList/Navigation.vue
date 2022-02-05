@@ -1,7 +1,7 @@
 <template>
   <div class="navigation" data-test="navigation">
-    <NavigationItem iconType="home" class="select" />
-    <NavigationItem iconType="favored" />
+    <NavigationItem iconType="item" class="select" />
+    <NavigationItem iconType="wish" />
     <NavigationItem iconType="cart" />
     <NavigationItem iconType="myPage" />
   </div>

@@ -1,7 +1,7 @@
 <template>
-  <div class="nav-item" data-test="navigation-item">
+  <div class="nav-item" data-test="navigation-item" @click="moveMenu">
     <font-awesome-icon :icon="customIcon" />
-    <div>{{iconType}}</div>
+    <div>{{menuName}}</div>
   </div>
 </template>
 
@@ -11,16 +11,24 @@ export default {
   props: {
     iconType: String,
   },
+  methods: {
+    moveMenu() {
+      this.$store.commit({ type: 'movePage', pageType: this.iconType });
+    },
+  },
   computed: {
+    menuName() {
+      return this.iconType === 'item' ? 'home' : this.iconType;
+    },
     customIcon() {
       const type = !this.iconType ? '' : this.iconType;
       let icon = '';
 
       switch (type) {
-        case 'home':
+        case 'item':
           icon = ['fas', 'home'];
           break;
-        case 'favored':
+        case 'wish':
           icon = ['fas', 'heart'];
           break;
         case 'cart':
