@@ -3,12 +3,14 @@ import { getList } from '@/utils/api/index';
 
 export default createStore({
   state: {
+    isLoading: true,
     pageType: 'item',
     products: [],
   },
   mutations: {
     movePage(state, payload) {
       let colName = 'items';
+      state.isLoading = true;
       state.pageType = payload.pageType;
 
       getList({ type: state.pageType })
@@ -18,9 +20,11 @@ export default createStore({
           const { [colName]: items } = data;
 
           state.products = items;
+          state.isLoading = false;
         })
         .catch((error) => {
           console.log(error);
+          state.isLoading = false;
         });
     },
   },

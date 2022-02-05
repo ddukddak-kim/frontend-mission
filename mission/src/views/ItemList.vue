@@ -6,6 +6,9 @@
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />
     </div>
     <Navigation />
+    <div class="loading" v-if="this.$store.state.isLoading">
+      <a>Loading..</a>
+    </div>
   </div>
 </template>
 
@@ -22,17 +25,6 @@ export default {
       store: {
         name: 'My Shopping Mall',
       },
-      product: [
-        // {
-        //   product_no: 'asdf1234',
-        //   name: '핏이 좋은 수트',
-        //   image:
-        //     'https://projectlion-vue.s3.ap-northeast-2.amazonaws.com/items/suit-1.png',
-        //   price: 198000.0,
-        //   original_price: 298000.0,
-        //   description: '아주 잘 맞는 수트',
-        // },
-      ],
     };
   },
   computed: {
@@ -50,6 +42,22 @@ export default {
 </script>
 
 <style>
+.loading {
+  background: #00000070;
+  height: 1000px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.loading > a {
+  position: relative;
+  top: 40%;
+  font-size: xx-large;
+  font-weight: bold;
+  text-shadow: 4px 2px 2px grey;
+  color: #ddd;
+}
 .item-list {
   width: 100%;
   padding-bottom: 60px;
