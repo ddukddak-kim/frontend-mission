@@ -12,7 +12,7 @@ import NavigationItem from '@/components/ItemList/NavigationItem.vue';
 
 export default {
   name: 'Navigation',
-  components: { Item },
+  components: { NavigationItem },
   props: {},
 };
 </script>
