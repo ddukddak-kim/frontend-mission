@@ -1,22 +1,22 @@
 <template>
-  <div class='hello'>
+  <div class="hello">
     <h1>{{ msg }}</h1>
 
     <div>
-      <input type='text' v-model='inputText'/>
-      <button class='submit' @click='submit'>제출</button>
-      <button class='notice' @click='openNotice'>알림</button>
+      <input type="text" v-model="inputText" />
+      <button class="submit" @click="submit">제출</button>
+      <button class="notice" @click="openNotice">알림</button>
     </div>
 
     <div>
-      <h2> {{ inputText }} </h2>
+      <h2>{{ inputText }}</h2>
     </div>
 
     <Notice
-      v-if='notice.isVisible'
-      @close='notice.isVisible=false'
-      :comment='inputText'
-      :count='notice.count'
+      v-if="notice.isVisible"
+      @close="notice.isVisible=false"
+      :comment="inputText"
+      :count="notice.count"
     />
   </div>
 </template>
@@ -25,31 +25,31 @@
 import Notice from './modals/Notice.vue';
 
 export default {
-	name: 'Main',
-	components: {
-		Notice,
-	},
-	props: {
-		msg: String,
-	},
-	data() {
-		return {
-			inputText: '',
-			notice: {
-				isVisible: false,
-				count: 0,
-			},
-		};
-	},
-	methods: {
-		submit() {
-			this.inputText = this.inputText.substr(1) + this.inputText.substr(0, 1);
-		},
-		openNotice() {
-			this.notice.isVisible = true;
-			this.notice.count += 1;
-		},
-	},
+  name: 'Main',
+  components: {
+    Notice,
+  },
+  props: {
+    msg: String,
+  },
+  data() {
+    return {
+      inputText: '',
+      notice: {
+        isVisible: false,
+        count: 0,
+      },
+    };
+  },
+  methods: {
+    submit() {
+      this.inputText = this.inputText.substr(1) + this.inputText.substr(0, 1);
+    },
+    openNotice() {
+      this.notice.isVisible = true;
+      this.notice.count += 1;
+    },
+  },
 };
 </script>
 

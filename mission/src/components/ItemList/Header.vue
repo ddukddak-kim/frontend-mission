@@ -1,7 +1,5 @@
 <template>
-  <div class="header" :class="{ hidden: isHidden }">
-    {{ storeName }}
-  </div>
+  <div class="header" :class="{ hidden: isHidden }">{{ storeName }}</div>
 </template>
 
 <script>
