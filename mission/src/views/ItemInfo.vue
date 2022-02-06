@@ -1,7 +1,14 @@
 <template>
   <div id="item-info-page">
     <!-- {{ $route.params.product_no}} -->
-    <Title v-bind:price="price" />
+    <Title
+      :seller_no="item.seller.seller_no"
+      :name="item.seller.name"
+      :hash_tags="item.seller.hash_tags"
+      :profile_image="item.seller.profile_image"
+      :price="item.price"
+      :original_price="item.original_price"
+    />
     <Detail />
     <Review />
     <Purchase v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice" />
@@ -35,6 +42,31 @@ export default {
   },
   data() {
     return {
+      item: {
+        product_no: '',
+        name: '',
+        image: '',
+        price: 0,
+        original_price: 0,
+        description: '',
+        seller: {
+          seller_no: 0,
+          name: '',
+          hash_tags: [],
+          profile_image: '',
+        },
+        reviews: [
+          {
+            review_no: 0,
+            writer: '',
+            title: '',
+            content: '',
+            likes_count: 0,
+            created: '',
+            img: '',
+          },
+        ],
+      },
       price: {
         isDiscount: true,
         discountPercent: 34,
@@ -43,7 +75,29 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    getDetailData() {
+      const itemNo = this.$route.params.product_no;
+
+      this.$store.state.isLoading = true;
+
+      getItemDetail({ itemNo })
+        .then(({ data }) => {
+          const { item } = data;
+
+          this.item = item;
+          this.$store.state.isLoading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$store.state.isLoading = false;
+        });
+    },
+  },
+  computed: {},
+  created() {
+    this.getDetailData();
+  },
 };
 </script>
 

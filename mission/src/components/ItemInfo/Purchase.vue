@@ -35,6 +35,6 @@ export default {
   color: #fff;
   border-radius: 10px;
   box-shadow: 2px 2px 2px #808080;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 </style>
