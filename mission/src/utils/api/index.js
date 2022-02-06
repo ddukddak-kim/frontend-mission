@@ -37,4 +37,17 @@ const getItemDetail = ({ itemNo }) => {
   return axios(config);
 };
 
-export { getList, getItemDetail };
+// 찜하기
+const postWish = ({ itemNo }) => {
+  const data = JSON.stringify({ itemNo });
+  config = {
+    ...config,
+    method: 'post',
+    url: `${BASE_URL}/wish`,
+    data,
+  };
+
+  return axios(config);
+};
+
+export { getList, getItemDetail, postWish };

@@ -39,10 +39,15 @@
 
 <script>
 import { numberWithComma } from '@/utils/js/commonFunc';
+import { postWish } from '@/utils/api/index';
 
 export default {
   name: 'Title',
   props: {
+    product_no: {
+      type: String,
+      default: '',
+    },
     image: {
       type: String,
       default: '',
@@ -83,6 +88,21 @@ export default {
   methods: {
     clickAct() {
       this.store.isFavored = !this.store.isFavored;
+
+      this.$store.state.isLoading = true;
+
+      postWish({ itemNo: this.product_no })
+        .then(({ status }) => {
+          if (status !== 200) {
+            throw new Error('찜하기 실패 했습니다.');
+          }
+
+          this.$store.state.isLoading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$store.state.isLoading = false;
+        });
     },
   },
   computed: {

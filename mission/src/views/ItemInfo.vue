@@ -1,6 +1,7 @@
 <template>
   <div id="item-info-page">
     <Title
+      :product_no="item.product_no"
       :image="item.image"
       :seller_no="item.seller.seller_no"
       :name="item.seller.name"
