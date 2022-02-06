@@ -3,6 +3,7 @@
     <Header v-bind:storeName="store.name" data-test="store-name" />
     <div class="item-list">
       <Item
+        data-test="item"
         v-for="(item, index) of products"
         :key="index"
         :product="item"
@@ -24,7 +25,10 @@ import Loading from '@/components/Loading.vue';
 export default {
   name: 'ItemListPage',
   components: {
-    Header, Item, Navigation, Loading,
+    Header,
+    Item,
+    Navigation,
+    Loading,
   },
   data() {
     return {
@@ -52,7 +56,10 @@ export default {
     },
   },
   created() {
-    this.$store.commit({ type: 'movePage', pageType: 'item' });
+    this.$store.commit({
+      type: 'movePage',
+      pageType: this.$store.state.pageType,
+    });
   },
 };
 </script>
