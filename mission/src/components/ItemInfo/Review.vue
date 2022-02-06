@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="product-info info">리뷰</div>
-    <div v-if="reviews[0].review_no === 0">등록된 리뷰가 없습니다.</div>
+    <div v-if="reviews[0].review_no === 0">{{ STRINGS.NO_REVIEW }}</div>
     <div
       v-else
       class="review-card"
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import Strings from '@/utils/js/Strings';
+
 export default {
   name: 'Review',
   props: {
@@ -39,7 +41,11 @@ export default {
       default: () => [],
     },
   },
-  computed: {},
+  computed: {
+    STRINGS() {
+      return Strings;
+    },
+  },
   methods: {},
   watch: {},
 };
