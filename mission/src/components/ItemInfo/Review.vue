@@ -1,17 +1,30 @@
 <template>
   <div class="content">
     <div class="product-info info">리뷰</div>
-    <div class="review-card" v-for="(item, index) of reviews" :key="index">
+    <div v-if="reviews[0].review_no === 0">등록된 리뷰가 없습니다.</div>
+    <div
+      v-else
+      class="review-card"
+      v-for="(item, index) of reviews"
+      :key="index"
+      data-no="item.review_no"
+    >
       <div>
-        {{ maskingId(item.user) }}
-        <a class="regist-date">{{ item.registDate }}</a>
+        <a class="writer">{{ item.writer }}</a>
+        <a class="regist-date">{{ item.created }}</a>
       </div>
       <div class="contents">
         <div class="review-info">
           <p class="title">{{ item.title }}</p>
-          {{ item.comment }}
+          <p class="content">{{ item.content }}</p>
+          <br />
+          <a class="likes">
+            <a>좋아요</a>
+            {{ item.likes_count }}
+          </a>
         </div>
-        <div class="image" :style="{ 'background-image': `url('${item.image}')` }"></div>
+
+        <div class="image" :style="{ 'background-image': `url('${item.img}')` }"></div>
       </div>
     </div>
   </div>
@@ -20,38 +33,14 @@
 <script>
 export default {
   name: 'Review',
-  data() {
-    return {
-      reviews: [
-        {
-          user: 'user01',
-          title: '만족해요',
-          comment: '핏이 아주 잘 맞습니다. 대만족-!',
-          /* eslint-disable global-require */
-          image: require('@/assets/img/detail/detail_01.jpg'),
-          registDate: '2022.01.01',
-        },
-        {
-          user: 'likeon022',
-          title: '22만족해요',
-          comment: '22핏이 아주 잘 맞습니다. 대만족-!',
-          /* eslint-disable global-require */
-          image: require('@/assets/img/detail/detail_01.jpg'),
-          registDate: '2022.01.01',
-        },
-      ],
-    };
-  },
-  computed: {
-    maskingId() {
-      return function maskingId(user) {
-        if (!user) return '';
-
-        const res = user.substring(0, 3) + '*'.repeat(user.length - 3);
-        return res;
-      };
+  props: {
+    reviews: {
+      type: Array,
+      default: () => [],
     },
   },
+  computed: {},
+  methods: {},
   watch: {},
 };
 </script>
@@ -84,12 +73,30 @@ export default {
   border-bottom: 2px solid #ddd;
 }
 .review-card div:first-child {
-  width: fit-content;
+  width: 100%;
+  text-align: left;
 }
 
+.review-card .writer {
+  padding-right: calc(10%);
+}
 .review-card .regist-date {
   color: #ababab;
+  padding-right: calc(10%);
 }
+
+.likes {
+  margin-top: 10px;
+  color: #70a3ff;
+  font-weight: bold;
+}
+.likes > a {
+  background: #70a3ff;
+  color: #fff;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 .review-card .contents {
   width: 100%;
   text-align: left;
@@ -103,10 +110,14 @@ export default {
   margin: 0px;
   font-weight: bold;
 }
+.review-card .contents .content {
+  margin: 0px;
+}
 
 .review-card .image {
-  width: 60px;
-  height: 60px;
+  width: 30%;
+  padding-bottom: 25%;
+  margin-bottom: 10px;
   border: 1px solid;
   background-repeat: no-repeat;
   background-position: center;
