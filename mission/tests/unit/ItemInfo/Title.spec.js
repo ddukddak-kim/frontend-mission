@@ -12,7 +12,7 @@ describe('ItemInfoPage', () => {
     expect(wrapper.find('.store').exists()).toBe(true);
   });
 
-  it('renders price info', async () => {
-    expect(wrapper.find('.price').exists()).toBe(true);
+  it('renders favored button', async () => {
+    expect(wrapper.find('.favored').exists()).toBe(true);
   });
 });
