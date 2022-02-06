@@ -17,7 +17,8 @@
       </div>
     </div>
 
-    <div class="product">
+    <div v-if="name === ''"></div>
+    <div class="product" v-else>
       <div class="name">
         <a>{{ name }}</a>
       </div>
