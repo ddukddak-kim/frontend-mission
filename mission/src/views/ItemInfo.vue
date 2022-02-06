@@ -1,7 +1,7 @@
 <template>
   <div id="item-info-page">
-    <!-- {{ $route.params.product_no}} -->
     <Title
+      :image="item.image"
       :seller_no="item.seller.seller_no"
       :name="item.seller.name"
       :hash_tags="item.seller.hash_tags"
@@ -9,7 +9,7 @@
       :price="item.price"
       :original_price="item.original_price"
     />
-    <Detail />
+    <Detail :description="item.description" />
     <Review />
     <Purchase v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice" />
     <Loading />
