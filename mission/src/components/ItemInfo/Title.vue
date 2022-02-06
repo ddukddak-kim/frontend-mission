@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title-image">
-      <img :src="profile_image" alt="product-image" />
+      <img :src="image" alt="product-image" />
     </div>
 
     <div class="store">
@@ -42,6 +42,10 @@ import { numberWithComma } from '@/utils/js/commonFunc';
 export default {
   name: 'Title',
   props: {
+    image: {
+      type: String,
+      default: '',
+    },
     seller_no: {
       type: Number,
       default: 0,
