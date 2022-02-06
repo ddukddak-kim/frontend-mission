@@ -14,8 +14,6 @@ export default createStore({
     products: [],
   },
   mutations: {
-    // login() {},
-
     movePage(state, { pageType }) {
       let colName = 'items';
       state.isLoading = true;
@@ -36,17 +34,6 @@ export default createStore({
         });
     },
   },
-  actions: {
-    // getAxios() {
-    //   getList({ type: 'item' })
-    //     .then(({ data }) => {
-    //       const { items } = data;
-    //       this.products = items;
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
-  },
+  actions: {},
   modules: {},
 });
