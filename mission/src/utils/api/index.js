@@ -50,4 +50,28 @@ const postWish = ({ itemNo }) => {
   return axios(config);
 };
 
-export { getList, getItemDetail, postWish };
+// 내 정보
+const getInfo = () => {
+  config = {
+    ...config,
+    method: 'get',
+    url: `${BASE_URL}/info`,
+  };
+
+  return axios(config);
+};
+
+// 로그인
+const postLogin = ({ id, password }) => {
+  const data = JSON.stringify({ id, password });
+  config = {
+    ...config,
+    method: 'post',
+    url: `${BASE_URL}/login`,
+    data,
+  };
+
+  return axios(config);
+};
+
+export { getList, getItemDetail, postWish, getInfo, postLogin };

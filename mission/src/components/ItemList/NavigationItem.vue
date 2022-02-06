@@ -13,7 +13,14 @@ export default {
   },
   methods: {
     moveMenu() {
-      this.$store.commit({ type: 'movePage', pageType: this.iconType });
+      if (this.iconType === 'myPage') {
+        // window.location = '/myPage';
+        this.$router.push({
+          name: 'MyPage',
+        });
+      } else {
+        this.$store.commit({ type: 'movePage', pageType: this.iconType });
+      }
     },
   },
   computed: {

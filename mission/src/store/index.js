@@ -3,15 +3,23 @@ import { getList } from '@/utils/api/index';
 
 export default createStore({
   state: {
+    user: {
+      id: '',
+      email: '',
+      username: '',
+      api_key: '',
+    },
     isLoading: true,
     pageType: 'item',
     products: [],
   },
   mutations: {
-    movePage(state, payload) {
+    // login() {},
+
+    movePage(state, { pageType }) {
       let colName = 'items';
       state.isLoading = true;
-      state.pageType = payload.pageType;
+      state.pageType = pageType;
 
       getList({ type: state.pageType })
         .then(({ data }) => {
