@@ -1,14 +1,24 @@
 <template>
   <div class="purchase">
-    <div class="button">{{ price }}원 구매</div>
+    <div class="button">{{ commaPrice }}원 구매</div>
   </div>
 </template>
 
 <script>
+import { numberWithComma } from '@/utils/js/commonFunc';
+
 export default {
   name: 'Purchase',
   props: {
-    price: String,
+    price: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    commaPrice() {
+      return numberWithComma(this.price);
+    },
   },
 };
 </script>

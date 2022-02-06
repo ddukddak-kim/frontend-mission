@@ -10,8 +10,8 @@
       :original_price="item.original_price"
     />
     <Detail :description="item.description" />
-    <Review />
-    <Purchase v-bind:price="price.isDiscount ? price.discountPrice : price.originPrice" />
+    <Review :reviews="item.reviews" />
+    <Purchase v-bind:price="item.price" />
     <Loading />
   </div>
 </template>
