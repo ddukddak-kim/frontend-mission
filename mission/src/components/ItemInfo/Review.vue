@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="product-info info">리뷰</div>
-    <div v-if="reviews[0].review_no === 0">{{ STRINGS.NO_REVIEW }}</div>
+    <div v-if="reviews[0].review_no === 0" data-test="no-review">{{ STRINGS.NO_REVIEW }}</div>
     <div
       v-else
       class="review-card"
