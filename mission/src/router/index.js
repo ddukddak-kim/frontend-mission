@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ItemList from '@/views/ItemList.vue';
 import WishList from '@/views/WishList.vue';
+import CartList from '@/views/CartList.vue';
 import ItemInfo from '@/views/ItemInfo.vue';
 import MyPage from '@/views/MyPage.vue';
 import Login from '@/views/Login.vue';
@@ -20,6 +21,11 @@ const routes = [
     path: '/wish',
     name: 'WishList',
     component: WishList,
+  },
+  {
+    path: '/cart',
+    name: 'CartList',
+    component: CartList,
   },
   {
     path: '/myPage',

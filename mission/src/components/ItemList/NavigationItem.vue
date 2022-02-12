@@ -13,17 +13,21 @@ export default {
   },
   methods: {
     moveMenu() {
-      if (this.iconType === 'home') {
+      if (this.iconType === 'item') {
         this.$router.push({
-          name: 'MyPage',
-        });
-      } else if (this.iconType === 'item') {
-        this.$router.push({
-          name: 'ItemInfo',
+          name: 'Home',
         });
       } else if (this.iconType === 'wish') {
         this.$router.push({
           name: 'WishList',
+        });
+      } else if (this.iconType === 'cart') {
+        this.$router.push({
+          name: 'CartList',
+        });
+      } else if (this.iconType === 'myPage') {
+        this.$router.push({
+          name: 'MyPage',
         });
       } else {
         this.$store.commit({ type: 'movePage', pageType: this.iconType });
