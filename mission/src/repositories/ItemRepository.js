@@ -6,4 +6,7 @@ export default {
   getItemList() {
     return Client.get(`${resource}`);
   },
+  getItemDetail(id) {
+    return Client.get(`${resource}/${id}`);
+  },
 };

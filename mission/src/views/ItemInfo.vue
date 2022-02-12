@@ -24,7 +24,9 @@ import Review from '@/components/ItemInfo/Review.vue';
 import Purchase from '@/components/ItemInfo/Purchase.vue';
 import Loading from '@/components/Loading.vue';
 
-import { getItemDetail } from '@/utils/api/index';
+import RepositoryFactory from '@/repositories/RepositoryFactory';
+
+const ItemRepository = RepositoryFactory.get('item');
 
 export default {
   name: 'ItemInfo',
@@ -77,27 +79,18 @@ export default {
     };
   },
   methods: {
-    getDetailData() {
-      const itemNo = this.$route.params.product_no;
-
+    async getItemDetail() {
       this.$store.state.isLoading = true;
 
-      getItemDetail({ itemNo })
-        .then(({ data }) => {
-          const { item } = data;
+      const { data } = await ItemRepository.getItemDetail(this.product_no);
+      this.$store.state.isLoading = false;
 
-          this.item = item;
-          this.$store.state.isLoading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$store.state.isLoading = false;
-        });
+      this.item = data.item;
     },
   },
   computed: {},
   created() {
-    this.getDetailData();
+    this.getItemDetail();
   },
 };
 </script>
