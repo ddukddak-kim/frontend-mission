@@ -1,7 +1,7 @@
 <template>
   <div id="item-list-page">
     <Header v-bind:storeName="store.name" data-test="store-name" />
-    <div class="item-list">
+    <div class="item-list cart">
       <Item
         data-test="item"
         v-for="(item, index) of carts"
@@ -11,6 +11,8 @@
       />
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />
     </div>
+
+    <div class="purchase-button button" @click="purchase">구매하러 가기</div>
     <Navigation />
     <Loading />
   </div>
@@ -48,6 +50,12 @@ export default {
       const { data } = await CartRepository.getCartList();
       this.carts = data.cart_item;
     },
+
+    purchase() {
+      this.$router.push({
+        name: 'Payment',
+      });
+    },
   },
   computed: {
     products() {
@@ -64,11 +72,17 @@ export default {
 </script>
 
 <style>
-.item-list {
-  width: 100%;
+.cart {
   padding-bottom: 60px;
+  /* width: calc(100% - 100px); */
+  /*
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; */
+}
+.purchase-button {
+  position: fixed;
+  left: 30%;
+  bottom: 80px;
 }
 </style>
