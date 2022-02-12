@@ -45,7 +45,7 @@ export default {
     /* eslint-disable camelcase */
     moveDetail({ product_no }) {
       this.$router.push({
-        name: 'Home',
+        name: 'ItemInfo',
         /* eslint-disable camelcase  */
         params: { product_no },
       });
@@ -63,7 +63,7 @@ export default {
       return this.$store.state.products;
     },
     isEven() {
-      return this.products.length % 2 === 1;
+      return this.items.length % 2 === 1;
     },
   },
   created() {

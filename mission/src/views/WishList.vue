@@ -53,7 +53,7 @@ export default {
       return this.$store.state.products;
     },
     isEven() {
-      return this.products.length % 2 === 1;
+      return this.wishes.length % 2 === 1;
     },
   },
   created() {
