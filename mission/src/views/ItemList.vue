@@ -3,7 +3,7 @@
     <Header v-bind:storeName="store.name" data-test="store-name" />
     <div class="item-list">
       <Item
-        data-test="item"
+        data-test="router-link-itemInfo"
         v-for="(item, index) of items"
         :key="index"
         :product="item"
@@ -67,11 +67,6 @@ export default {
     },
   },
   created() {
-    // this.$store.commit({
-    //   type: 'movePage',
-    //   pageType: this.$store.state.pageType,
-    // });
-
     this.getItemList();
   },
 };

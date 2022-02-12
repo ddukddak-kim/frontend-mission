@@ -11,11 +11,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: ItemList,
+    props: true,
   },
   {
     path: '/item/:product_no',
     name: 'ItemInfo',
     component: ItemInfo,
+    props: true,
   },
   {
     path: '/wish',
@@ -26,16 +28,19 @@ const routes = [
     path: '/cart',
     name: 'CartList',
     component: CartList,
+    props: true,
   },
   {
     path: '/myPage',
     name: 'MyPage',
     component: MyPage,
+    props: true,
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    props: true,
   },
 ];
 

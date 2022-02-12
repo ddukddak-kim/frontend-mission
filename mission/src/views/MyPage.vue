@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { getItemDetail } from '@/utils/api/index';
+// import { getItemDetail } from '@/utils/api/index';
 import Strings from '@/utils/js/Strings';
 
 export default {

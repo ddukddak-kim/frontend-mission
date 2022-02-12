@@ -42,19 +42,10 @@ export default {
     };
   },
   methods: {
-    /* eslint-disable camelcase */
-    moveDetail({ product_no }) {
-      this.$router.push({
-        name: 'Home',
-        /* eslint-disable camelcase  */
-        params: { product_no },
-      });
-    },
-
-    async getItemList() {
+    async getCartList() {
       this.$store.state.isLoading = false;
 
-      const { data } = await CartRepository.getItemList();
+      const { data } = await CartRepository.getCartList();
       this.carts = data.cart_item;
     },
   },
@@ -67,12 +58,7 @@ export default {
     },
   },
   created() {
-    // this.$store.commit({
-    //   type: 'movePage',
-    //   pageType: this.$store.state.pageType,
-    // });
-
-    this.getItemList();
+    this.getCartList();
   },
 };
 </script>
