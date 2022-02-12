@@ -1,29 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ItemListPage from '@/views/ItemList.vue';
-import ItemInfoPage from '@/views/ItemInfo.vue';
-import MyPageItem from '@/views/MyPage.vue';
+import ItemList from '@/views/ItemList.vue';
+import WishList from '@/views/WishList.vue';
+import ItemInfo from '@/views/ItemInfo.vue';
+import MyPage from '@/views/MyPage.vue';
 import Login from '@/views/Login.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: ItemListPage,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: ItemList,
   },
   {
     path: '/item/:product_no',
     name: 'ItemInfo',
-    component: ItemInfoPage,
+    component: ItemInfo,
+  },
+  {
+    path: '/wish',
+    name: 'WishList',
+    component: WishList,
   },
   {
     path: '/myPage',
     name: 'MyPage',
-    component: MyPageItem,
+    component: MyPage,
   },
   {
     path: '/login',

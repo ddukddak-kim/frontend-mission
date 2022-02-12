@@ -13,10 +13,17 @@ export default {
   },
   methods: {
     moveMenu() {
-      if (this.iconType === 'myPage') {
-        // window.location = '/myPage';
+      if (this.iconType === 'home') {
         this.$router.push({
           name: 'MyPage',
+        });
+      } else if (this.iconType === 'item') {
+        this.$router.push({
+          name: 'ItemInfo',
+        });
+      } else if (this.iconType === 'wish') {
+        this.$router.push({
+          name: 'WishList',
         });
       } else {
         this.$store.commit({ type: 'movePage', pageType: this.iconType });
