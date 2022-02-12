@@ -4,7 +4,7 @@
     <div class="item-list">
       <Item
         data-test="item"
-        v-for="(item, index) of products"
+        v-for="(item, index) of items"
         :key="index"
         :product="item"
         @click="moveDetail(item)"
@@ -21,6 +21,9 @@ import Header from '@/components/ItemList/Header.vue';
 import Navigation from '@/components/ItemList/Navigation.vue';
 import Item from '@/components/ItemList/Item.vue';
 import Loading from '@/components/Loading.vue';
+import RepositoryFactory from '@/repositories/RepositoryFactory';
+
+const ItemRepository = RepositoryFactory.get('item');
 
 export default {
   name: 'ItemListPage',
@@ -35,16 +38,24 @@ export default {
       store: {
         name: 'My Shopping Mall',
       },
+      items: [],
     };
   },
   methods: {
     /* eslint-disable camelcase */
     moveDetail({ product_no }) {
       this.$router.push({
-        name: 'ItemInfo',
+        name: 'Home',
         /* eslint-disable camelcase  */
         params: { product_no },
       });
+    },
+
+    async getItemList() {
+      this.$store.state.isLoading = false;
+
+      const { data } = await ItemRepository.getItemList();
+      this.items = data.items;
     },
   },
   computed: {
@@ -56,10 +67,12 @@ export default {
     },
   },
   created() {
-    this.$store.commit({
-      type: 'movePage',
-      pageType: this.$store.state.pageType,
-    });
+    // this.$store.commit({
+    //   type: 'movePage',
+    //   pageType: this.$store.state.pageType,
+    // });
+
+    this.getItemList();
   },
 };
 </script>
