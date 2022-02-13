@@ -1,5 +1,6 @@
 <template>
   <div class="payment-complete">
+    <font-awesome-icon :icon="['fas', 'check']" class="icon" />
     <h2>주문이 완료 되었습니다.</h2>
     <div class="button" @click="moveHome">홈으로</div>
   </div>
@@ -41,6 +42,9 @@ export default {
   position: absolute;
   top: 40%;
   left: 18%;
+}
+.icon {
+  font-size: 1.5em;
 }
 .button {
   position: relative;
