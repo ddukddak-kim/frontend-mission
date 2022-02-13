@@ -1,18 +1,18 @@
 <template>
   <div class="navigation" data-test="navigation">
-    <Item iconType="home" class="select" />
-    <Item iconType="favored" />
-    <Item iconType="cart" />
-    <Item iconType="myPage" />
+    <NavigationItem iconType="item" class="select" />
+    <NavigationItem iconType="wish" />
+    <NavigationItem iconType="cart" />
+    <NavigationItem iconType="myPage" />
   </div>
 </template>
 
 <script>
-import Item from '@/components/ItemList/NavigationItem.vue';
+import NavigationItem from '@/components/ItemList/NavigationItem.vue';
 
 export default {
   name: 'Navigation',
-  components: { Item },
+  components: { NavigationItem },
   props: {},
 };
 </script>

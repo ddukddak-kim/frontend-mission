@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Main msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <Main msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
@@ -10,9 +10,9 @@
 import Main from '@/components/Main.vue';
 
 export default {
-	name: 'Home',
-	components: {
-		Main,
-	},
+  name: 'Home',
+  components: {
+    Main,
+  },
 };
 </script>

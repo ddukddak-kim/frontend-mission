@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="title-image">
-      <img :src="product.image" alt="product-image" />
+      <img :src="image" alt="product-image" />
     </div>
 
     <div class="store">
-      <div class="image" :style="{ 'background-image': `url('${store.image}')` }"></div>
+      <div class="image" :style="{ 'background-image': `url('${profile_image}')` }"></div>
       <div>
-        <div class="name">{{ store.name }}</div>
+        <div class="name">{{ name }}</div>
         <div class="hash">
-          <a v-for="(item, index) of store.hash" :key="index"># {{ item.name }}</a>
+          <a v-for="(item, index) of hash_tags" :key="index"># {{ item }}</a>
         </div>
       </div>
       <div class="favored" @click="clickAct">
@@ -17,62 +17,108 @@
       </div>
     </div>
 
-    <div class="product">
+    <div v-if="name === ''"></div>
+    <div class="product" v-else>
       <div class="name">
-        <a>{{ product.name }}</a>
+        <a>{{ name }}</a>
       </div>
-
-      <div class="price" v-if="price.isDiscount">
-        <div class="discount-percent">{{ price.discountPercent }}%</div>
-        <div class="pay-price">{{ price.discountPrice }} 원</div>
+      <div class="price" v-if="original_price > 0">
+        <div class="discount-percent">{{ discountPercent }}%</div>
+        <div class="pay-price">{{ commaPrice }} 원</div>
         <div class="origin-price">
-          <del>{{ price.originPrice }} 원</del>
+          <del>{{ commaOriginPrice }} 원</del>
         </div>
       </div>
+
       <div class="price" v-else>
-        <div class="pay-price">{{ price.originPrice }} 원</div>
+        <div class="pay-price">{{ commaPrice }} 원</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { numberWithComma } from '@/utils/js/commonFunc';
+import { postWish } from '@/utils/api/index';
+
 export default {
   name: 'Title',
   props: {
-    price: Object,
+    product_no: {
+      type: String,
+      default: '',
+    },
+    image: {
+      type: String,
+      default: '',
+    },
+    seller_no: {
+      type: Number,
+      default: 0,
+    },
+    name: {
+      type: String,
+      default: '',
+    },
+    hash_tags: {
+      type: Array,
+      default: () => [],
+    },
+    profile_image: {
+      type: String,
+      default: '',
+    },
+
+    price: {
+      type: Number,
+      default: 0,
+    },
+    original_price: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
       store: {
-        /* eslint-disable global-require */
-        image: require('@/assets/img/title/store_01.jpg'),
-        name: '대한양복',
         isFavored: false,
-        hash: [
-          {
-            name: 'tag1',
-            code: '01',
-          },
-          {
-            name: 'tag2',
-            code: '02',
-          },
-        ],
-      },
-      product: {
-        /* eslint-disable global-require */
-        image: require('@/assets/img/title/title_01.jpg'),
-        name: '핏이 좋은 수트',
       },
     };
   },
   methods: {
     clickAct() {
       this.store.isFavored = !this.store.isFavored;
+
+      this.$store.state.isLoading = true;
+
+      postWish({ itemNo: this.product_no })
+        .then(({ status }) => {
+          if (status !== 200) {
+            throw new Error('찜하기 실패 했습니다.');
+          }
+
+          this.$store.state.isLoading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$store.state.isLoading = false;
+        });
     },
   },
-  computed: {},
+  computed: {
+    commaPrice() {
+      return numberWithComma(this.price);
+    },
+    commaOriginPrice() {
+      return numberWithComma(this.original_price);
+    },
+    discountPercent() {
+      const discountedPrice = this.original_price - this.price;
+      const percent = (discountedPrice / this.original_price) * 100;
+
+      return Math.floor(percent);
+    },
+  },
 };
 </script>
 
@@ -94,6 +140,7 @@ export default {
 }
 .store div:nth-child(1) {
   min-width: 15%;
+  margin-bottom: 5px;
 }
 .store div:nth-child(2) {
   min-width: 50%;
@@ -119,6 +166,12 @@ export default {
 }
 .store .hash {
   display: flex;
+}
+.store .hash > a {
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 3px 5px;
+  margin-right: 5px;
 }
 
 .product {

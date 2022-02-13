@@ -4,7 +4,8 @@ import Detail from '@/components/ItemInfo/Detail.vue';
 describe('ItemInfoPage', () => {
   const wrapper = shallowMount(Detail);
 
-  it('renders detail title', async () => {
-    expect(wrapper.find('.sub-title').exists()).toBe(true);
+  it('renders detail items', async () => {
+    expect(wrapper.find('.product-info').exists()).toBe(true);
+    expect(wrapper.find('.detail-info').exists()).toBe(true);
   });
 });

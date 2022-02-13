@@ -2,9 +2,12 @@ import { shallowMount } from '@vue/test-utils';
 import Review from '@/components/ItemInfo/Review.vue';
 
 describe('ItemInfoPage', () => {
-  const wrapper = shallowMount(Review);
-
-  it('renders review page', async () => {
-    expect(wrapper.find('.content').exists()).toBe(true);
+  it('render when empty review', () => {
+    const wrapper = shallowMount(Review, {
+      props: {
+        reviews: [{ review_no: 0 }],
+      },
+    });
+    expect(wrapper.find('[data-test="no-review"]').exists()).toBe(true);
   });
 });

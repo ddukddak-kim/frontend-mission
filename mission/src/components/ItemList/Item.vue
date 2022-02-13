@@ -4,11 +4,11 @@
     <div v-else class="item">
       <div
         class="image"
-        :style="{ 'background-image': `url('${!product.img ? '' : product.img}')` }"
+        :style="{ 'background-image': `url('${!product.image ? '' : product.image}')` }"
       ></div>
       <div class="price-info">
         <a class="percent" v-if="isDiscount" data-test="discount-percent">{{ discountPercent }}%</a>
-        <a class="purchase-price" data-test="purchase-price">{{ purchasePrice }} 원</a>
+        <a class="purchase-price" data-test="purchase-price">{{ priceWithComma }} 원</a>
       </div>
       <div class="product-name">
         <a>{{ product.name }}</a>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { numberWithComma } from '@/utils/js/commonFunc';
+
 export default {
   name: 'ItemListItem',
   props: {
@@ -29,17 +31,21 @@ export default {
   },
   computed: {
     isDiscount() {
-      return this.product.discountPrice.trim().length > 0;
-    },
-    purchasePrice() {
-      let price = this.isDiscount ? this.product.discountPrice : this.product.price;
-      price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      // temp
+      if (!this.product.original_price) return '';
 
-      return price;
+      return this.product.original_price > 0;
     },
+
+    priceWithComma() {
+      if (!this.product.price) return '';
+
+      return numberWithComma(this.product.price);
+    },
+
     discountPercent() {
-      const discountedPrice = this.product.price - this.product.discountPrice;
-      const percent = (discountedPrice / this.product.price) * 100;
+      const discountedPrice = this.product.original_price - this.product.price;
+      const percent = (discountedPrice / this.product.original_price) * 100;
 
       return Math.floor(percent);
     },

@@ -3,8 +3,8 @@
     <Header v-bind:storeName="store.name" data-test="store-name" />
     <div class="item-list">
       <Item
-        data-test="router-link-itemInfo"
-        v-for="(item, index) of items"
+        data-test="item"
+        v-for="(item, index) of wishes"
         :key="index"
         :product="item"
         @click="moveDetail(item)"
@@ -23,10 +23,10 @@ import Item from '@/components/ItemList/Item.vue';
 import Loading from '@/components/Loading.vue';
 import RepositoryFactory from '@/repositories/RepositoryFactory';
 
-const ItemRepository = RepositoryFactory.get('item');
+const WishRepository = RepositoryFactory.get('wish');
 
 export default {
-  name: 'ItemListPage',
+  name: 'WishList',
   components: {
     Header,
     Item,
@@ -38,24 +38,14 @@ export default {
       store: {
         name: 'My Shopping Mall',
       },
-      items: [],
+      wishes: [],
     };
   },
   methods: {
-    /* eslint-disable camelcase */
-    moveDetail({ product_no }) {
-      this.$router.push({
-        name: 'ItemInfo',
-        /* eslint-disable camelcase  */
-        params: { product_no },
-      });
-    },
-
-    async getItemList() {
+    async getWishList() {
+      const { data } = await WishRepository.getItemList();
       this.$store.state.isLoading = false;
-
-      const { data } = await ItemRepository.getItemList();
-      this.items = data.items;
+      this.wishes = data.items;
     },
   },
   computed: {
@@ -63,11 +53,11 @@ export default {
       return this.$store.state.products;
     },
     isEven() {
-      return this.items.length % 2 === 1;
+      return this.wishes.length % 2 === 1;
     },
   },
   created() {
-    this.getItemList();
+    this.getWishList();
   },
 };
 </script>

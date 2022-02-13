@@ -3,8 +3,8 @@
     <Header v-bind:storeName="store.name" data-test="store-name" />
     <div class="item-list">
       <Item
-        data-test="router-link-itemInfo"
-        v-for="(item, index) of items"
+        data-test="item"
+        v-for="(item, index) of carts"
         :key="index"
         :product="item"
         @click="moveDetail(item)"
@@ -23,10 +23,10 @@ import Item from '@/components/ItemList/Item.vue';
 import Loading from '@/components/Loading.vue';
 import RepositoryFactory from '@/repositories/RepositoryFactory';
 
-const ItemRepository = RepositoryFactory.get('item');
+const CartRepository = RepositoryFactory.get('cart');
 
 export default {
-  name: 'ItemListPage',
+  name: 'CartList',
   components: {
     Header,
     Item,
@@ -38,24 +38,15 @@ export default {
       store: {
         name: 'My Shopping Mall',
       },
-      items: [],
+      carts: [],
     };
   },
   methods: {
-    /* eslint-disable camelcase */
-    moveDetail({ product_no }) {
-      this.$router.push({
-        name: 'ItemInfo',
-        /* eslint-disable camelcase  */
-        params: { product_no },
-      });
-    },
-
-    async getItemList() {
+    async getCartList() {
       this.$store.state.isLoading = false;
 
-      const { data } = await ItemRepository.getItemList();
-      this.items = data.items;
+      const { data } = await CartRepository.getCartList();
+      this.carts = data.cart_item;
     },
   },
   computed: {
@@ -63,11 +54,11 @@ export default {
       return this.$store.state.products;
     },
     isEven() {
-      return this.items.length % 2 === 1;
+      return this.carts.length % 2 === 1;
     },
   },
   created() {
-    this.getItemList();
+    this.getCartList();
   },
 };
 </script>
