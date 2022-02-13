@@ -1,7 +1,7 @@
 <template>
   <div id="cart-list-page">
     <Header v-bind:storeName="store.name" data-test="store-name" />
-
+    <h3>장바구니</h3>
     <div class="item-list cart">
       <Item data-test="item" v-for="(item, index) of carts" :key="index" :product="item" />
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />

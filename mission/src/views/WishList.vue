@@ -1,7 +1,8 @@
 <template>
   <div id="item-list-page">
     <Header v-bind:storeName="store.name" data-test="store-name" />
-    <div class="item-list">
+    <h3>위시 리스트</h3>
+    <div class="wish-list">
       <Item
         data-test="item"
         v-for="(item, index) of wishes"
@@ -49,9 +50,6 @@ export default {
     },
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
     isEven() {
       return this.wishes.length % 2 === 1;
     },
@@ -63,7 +61,7 @@ export default {
 </script>
 
 <style>
-.item-list {
+.wish-list {
   width: 100%;
   padding-bottom: 60px;
   display: flex;
