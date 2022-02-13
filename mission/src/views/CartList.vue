@@ -6,7 +6,9 @@
       <Item data-test="item" v-for="(item, index) of carts" :key="index" :product="item" />
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />
     </div>
-    <div class="purchase-button button" @click="purchase">구매하러 가기</div>
+    <div class="purchase-button button" @click="payment" data-test="router-link-payment">
+      구매하러 가기
+    </div>
     <Navigation />
     <Loading />
   </div>
@@ -43,7 +45,7 @@ export default {
       const { data } = await CartRepository.getCartList();
       this.$store.state.carts = data.cart_item;
     },
-    purchase() {
+    payment() {
       this.$router.push({
         name: 'Payment',
       });
