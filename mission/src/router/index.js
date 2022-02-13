@@ -5,6 +5,7 @@ import CartList from '@/views/CartList.vue';
 import ItemInfo from '@/views/ItemInfo.vue';
 import MyPage from '@/views/MyPage.vue';
 import Login from '@/views/Login.vue';
+import Payment from '@/views/Payment.vue';
 
 const routes = [
   {
@@ -40,6 +41,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+    props: true,
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: Payment,
     props: true,
   },
 ];
