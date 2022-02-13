@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>주문하기</h2>
-    <div v-if="isEmptyCart">
+    <div v-if="isEmptyCart" data-test="emptyCart">
       <p>주문 할 상품이 없습니다.</p>
       <div class="button" @click="backToCart">뒤로가기</div>
     </div>
