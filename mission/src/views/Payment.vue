@@ -1,8 +1,12 @@
 <template>
   <div>
     <h2>주문하기</h2>
-    <p>{{ 'name' }} 포함 {{ 'count' }} 건 {{ 'price' }}원</p>
-    <div class="payment-info">
+    <div v-if="isEmptyCart">
+      <p>주문 할 상품이 없습니다.</p>
+      <div class="button" @click="backToCart">뒤로가기</div>
+    </div>
+    <div class="payment-info" v-else>
+      <p>{{ orderPreview.itemName }} 포함 {{ carts.length }} 건 {{ 'price' }}원</p>
       <div class="input-container">
         <div class="input-label">주문자명</div>
         <div>
@@ -24,8 +28,14 @@
       <div class="input-container">
         <div class="input-label">배송방법</div>
         <div>
-          <label><input type="radio" value="01" name="deliveryType" />택배</label>
-          <label><input type="radio" value="02" name="deliveryType" />퀵배송</label>
+          <label>
+            <input type="radio" value="01" name="deliveryType" v-model="order.deliveryType" />
+            택배
+          </label>
+          <label>
+            <input type="radio" value="02" name="deliveryType" v-model="order.deliveryType" />
+            퀵배송
+          </label>
         </div>
       </div>
 
@@ -43,65 +53,68 @@
         </div>
       </div>
 
-      <div class="button" @click="login">주문하기</div>
+      <div class="button" @click="moveComplete">주문하기</div>
     </div>
   </div>
 </template>
 
 <script>
-import { postLogin } from '@/utils/api/index';
 import Strings from '@/utils/js/Strings';
 
 export default {
-  name: 'Login',
+  name: 'Payment',
   components: {},
   props: {},
 
   data() {
     return {
-      isLogin: false,
-      id: '',
-      password: '',
+      order: {
+        orderer: '',
+        phoneNumber: '',
+        adddress: '',
+        deliveryType: '01',
+      },
     };
   },
   methods: {
-    checkLogin() {
-      this.isLogin = this.$store.state.user.id !== '';
-    },
-    login() {
-      this.$store.state.isLoading = true;
-
-      postLogin({ id: this.id, password: this.password })
-        .then(({ status, data }) => {
-          if (status !== 200) {
-            throw new Error('로그인 실패 했습니다.');
-          }
-
-          this.$store.state.user.id = this.id;
-          this.$store.state.user.api_key = data.api_key;
-
-          this.moveMain();
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$store.state.isLoading = false;
-        });
-    },
-
-    moveMain() {
+    backToCart() {
       this.$router.push({
-        name: 'Home',
+        name: 'CartList',
+      });
+    },
+    moveComplete() {
+      this.$router.push({
+        name: 'PaymentComplete',
       });
     },
   },
   computed: {
+    carts() {
+      return this.$store.state.carts;
+    },
+    isEmptyCart() {
+      return this.$store.state.carts.length === 0;
+    },
+    orderPreview() {
+      const obj = {
+        itemName: '',
+        totalCount: '',
+        totalPrice: '',
+      };
+
+      if (!this.isEmptyCart) {
+        obj.itemName = this.$store.state.carts[0].name;
+        obj.totalCount = '';
+        obj.totalPrice = '';
+      }
+
+      return obj;
+    },
     STRINGS() {
       return Strings;
     },
   },
-  created() {
-    this.checkLogin();
-  },
+  created() {},
 };
 </script>
 
