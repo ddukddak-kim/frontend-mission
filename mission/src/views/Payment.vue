@@ -57,7 +57,7 @@
         </div>
 
         <div class="button" @click="moveComplete">주문하기</div>
-        <p class="validation-message">{{ mes }}</p>
+        <p class="validation-message">{{ validateMessage }}</p>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
         adddress: '',
         deliveryType: '01',
       },
-      mes: '',
+      validateMessage: '',
     };
   },
   methods: {
@@ -95,9 +95,9 @@ export default {
         || this.order.phoneNumber === ''
         || this.order.adddress === ''
       ) {
-        this.mes = '필수 값 입력해 주세요.';
+        this.validateMessage = '필수 값 입력해 주세요.';
       } else {
-        this.mes = '';
+        this.validateMessage = '';
         this.$router.push({
           name: 'PaymentComplete',
         });
