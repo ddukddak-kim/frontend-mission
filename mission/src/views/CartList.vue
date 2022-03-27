@@ -1,15 +1,13 @@
 <template>
-  <div id="item-list-page">
+  <div id="cart-list-page">
     <Header v-bind:storeName="store.name" data-test="store-name" />
-    <div class="item-list">
-      <Item
-        data-test="item"
-        v-for="(item, index) of carts"
-        :key="index"
-        :product="item"
-        @click="moveDetail(item)"
-      />
+    <h3>장바구니</h3>
+    <div class="item-list cart">
+      <Item data-test="item" v-for="(item, index) of carts" :key="index" :product="item" />
       <Item v-if="isEven" :isEmpty="true" data-test="empty-item" />
+    </div>
+    <div class="purchase-button button" @click="payment" data-test="router-link-payment">
+      구매하러 가기
     </div>
     <Navigation />
     <Loading />
@@ -38,7 +36,6 @@ export default {
       store: {
         name: 'My Shopping Mall',
       },
-      carts: [],
     };
   },
   methods: {
@@ -46,12 +43,17 @@ export default {
       this.$store.state.isLoading = false;
 
       const { data } = await CartRepository.getCartList();
-      this.carts = data.cart_item;
+      this.$store.state.carts = data.cart_item;
+    },
+    payment() {
+      this.$router.push({
+        name: 'Payment',
+      });
     },
   },
   computed: {
-    products() {
-      return this.$store.state.products;
+    carts() {
+      return this.$store.state.carts;
     },
     isEven() {
       return this.carts.length % 2 === 1;
@@ -64,11 +66,18 @@ export default {
 </script>
 
 <style>
-.item-list {
+.cart {
   width: 100%;
   padding-bottom: 60px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.purchase-button {
+  position: fixed;
+  left: 30%;
+  bottom: 80px;
   justify-content: space-around;
 }
 </style>

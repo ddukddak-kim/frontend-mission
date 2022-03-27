@@ -59,9 +59,6 @@ export default {
     },
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
     isEven() {
       return this.items.length % 2 === 1;
     },

@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { getList } from '@/utils/api/index';
+// import { getList } from '@/utils/api/index';
 
 export default createStore({
   state: {
@@ -12,27 +12,25 @@ export default createStore({
     isLoading: true,
     pageType: 'item',
     products: [],
+    carts: [],
   },
   mutations: {
-    movePage(state, { pageType }) {
-      let colName = 'items';
-      state.isLoading = true;
-      state.pageType = pageType;
-
-      getList({ type: state.pageType })
-        .then(({ data }) => {
-          if ('cart'.includes(state.pageType)) colName = 'cart_item';
-
-          const { [colName]: items } = data;
-
-          state.products = items;
-          state.isLoading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-          state.isLoading = false;
-        });
-    },
+    // movePage(state, { pageType }) {
+    //   let colName = 'items';
+    //   state.isLoading = true;
+    //   state.pageType = pageType;
+    //   getList({ type: state.pageType })
+    //     .then(({ data }) => {
+    //       if ('cart'.includes(state.pageType)) colName = 'cart_item';
+    //       const { [colName]: items } = data;
+    //       state.products = items;
+    //       state.isLoading = false;
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       state.isLoading = false;
+    //     });
+    // },
   },
   actions: {},
   modules: {},
